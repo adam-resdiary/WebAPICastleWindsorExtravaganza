@@ -5,35 +5,33 @@ using System.Web.Http;
 
 namespace HandheldServer
 {
+    using System.Web.Http.Dispatcher;
+    using Castle.Windsor;
+    using DIPlumbing;
+
     public static class WebApiConfig
     {
-        public static void Register(HttpConfiguration config)
+        public static void Register(HttpConfiguration config, IWindsorContainer container)
         {
-            // Web API configuration and services
+            MapRoutes(config);
+            RegisterControllerActivator(container);
+        }
 
-            // Web API routes
+        private static void MapRoutes(HttpConfiguration config)
+        {
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new {id = RouteParameter.Optional}
+                );
+        }
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApiWithParameters",
-                routeTemplate: "api/{controller}/{ID}/{CountToFetch}"
-                //defaults: new { ID = RouteParameter.Optional, CountToFetch = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApiWith3Parameters",
-                routeTemplate: "api/{controller}/{ID}/{packSize}/{CountToFetch}"
-                //defaults: new { ID = RouteParameter.Optional, packSize = RouteParameter.Optional, CountToFetch = RouteParameter.Optional }
-            );
-
-            // TODO: Should I add entries here for all of the expected URIs?
-
+        private static void RegisterControllerActivator(IWindsorContainer container)
+        {
+            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator),
+                new WindsorCompositionRoot(container));
         }
     }
 }

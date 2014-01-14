@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Castle.Windsor;
 using System.Net.Http;
 using System.Web.Http.Controllers;

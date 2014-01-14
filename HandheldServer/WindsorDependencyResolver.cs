@@ -103,29 +103,6 @@ namespace HandheldServer
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(
-                //Component.For(typeof(IRepository<>)).ImplementedBy(typeof(Repository<>)).LifestyleTransient(),
-
-                //Component.For<IFormsAuthenticationService>().ImplementedBy<FormsAuthenticationService>().LifestylePerWebRequest(),
-
-                //Component.For<IUserService>().ImplementedBy<UserService>().LifestylePerWebRequest(),
-                //Component.For<IAppService>().ImplementedBy<AppService>().LifestylePerWebRequest(),
-                //Component.For<ITagService>().ImplementedBy<TagService>().LifestylePerWebRequest(),
-                //Component.For<IReportService>().ImplementedBy<ReportService>().LifestylePerWebRequest(),
-                //Component.For<IWordService>().ImplementedBy<WordService>().LifestylePerWebRequest(),
-                //Component.For<ISearchService>().ImplementedBy<SearchService>().LifestylePerWebRequest());
-                
-                //Component.For(typeof(IRepository<>)).ImplementedBy(typeof(Repository<>)).LifestyleTransient(),
-
-                //Component.For<IFormsAuthenticationService>().ImplementedBy<FormsAuthenticationService>().LifestylePerWebRequest(),
-
-                Component.For<IDeliveryItemRepository>().ImplementedBy<DeliveryItemRepository>().LifestylePerWebRequest(),
-                Component.For<IDeliveryRepository>().ImplementedBy<DeliveryRepository>().LifestylePerWebRequest(),
-                Component.For<IDepartmentRepository>().ImplementedBy<DepartmentRepository>().LifestylePerWebRequest(),
-                Component.For<IExpenseRepository>().ImplementedBy<ExpenseRepository>().LifestylePerWebRequest(),
-                Component.For<IInventoryItemRepository>().ImplementedBy<InventoryItemRepository>().LifestylePerWebRequest(),
-                Component.For<IInventoryRepository>().ImplementedBy<InventoryRepository>().LifestylePerWebRequest(),
-                Component.For<IItemGroupRepository>().ImplementedBy<ItemGroupRepository>().LifestylePerWebRequest());
         }
     }
 }

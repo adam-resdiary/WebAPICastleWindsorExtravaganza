@@ -46,16 +46,17 @@ namespace HandheldServer
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
             //BundleConfig.RegisterBundles(BundleTable.Bundles);
             // ...uncomment the above if the below works no better
+            ConfigureWindsor(GlobalConfiguration.Configuration);
 
             // ... replacing it with this from http://stackoverflow.com/questions/19905186/dependency-injection-in-webapi-with-castle-windsor:
-            AreaRegistration.RegisterAllAreas();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            // For some reason I had to call GlobalConfiguration.Configure instead of WebApiConfig.Register to avoid a 404.
+            //WebApiConfig.Register(GlobalConfiguration.Configuration, _container);
+            GlobalConfiguration.Configure(c => WebApiConfig.Register(c, _container));
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            ConfigureWindsor(GlobalConfiguration.Configuration);
             // ...new section replacing what's commented out
         }
 

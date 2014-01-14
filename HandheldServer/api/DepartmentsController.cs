@@ -23,11 +23,13 @@ namespace HandheldServer.Controllers
             _deptsRepository = deptsRepository;
         }
 
+        [Route("api/Departments/Count")]
         public int GetCountOfDepartmentRecords()
         {
             return _deptsRepository.Get();
         }
 
+        [Route("api/Departments")]
         public IEnumerable<Department> GetBatchOfDepartmentsByStartingID(int ID, int CountToFetch)
         {
             return _deptsRepository.Get(ID, CountToFetch);
